@@ -4,6 +4,19 @@ from openmv import Camera
 import time
 
 camera_path = "/dev/ttyACM0"
+
+internal_script = """
+import sensor
+
+sensor.reset()
+sensor.set_pixformat(sensor.RGB565)
+sensor.set_framesize(sensor.QVGA)
+sensor.skip_frames(time=2000)
+
+while True:
+    sensor.snapshot()
+"""
+
 class H7camera:
 
     camera = None
@@ -14,8 +27,12 @@ class H7camera:
             self.camera = Camera(path)
         else:
             self.camera = Camera(camera_path)
-
+        
         self.camera.connect()
+        self.camera.stop()
+
+        self.camera.exec(internal_script)
+
         return
 
     def __del__(self) -> None:
@@ -39,6 +56,6 @@ class H7camera:
 
             time.sleep(0.01)
 
-            self.camera.streaming(False)
+        self.camera.streaming(False)
         
         return image
