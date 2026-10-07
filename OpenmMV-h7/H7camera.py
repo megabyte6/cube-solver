@@ -6,7 +6,7 @@ class H7camera:
 
     camera = None
 
-    def __init__(self, path: str = None):
+    def __init__(self, path: str = None) -> None:
 
         if path:
             self.camera = Camera(path)
@@ -14,10 +14,11 @@ class H7camera:
             self.camera = Camera(camera_path)
 
         self.camera.connect()
-        return self
+        return
 
-    def __del__(self):
-        self.camera.disconnect()
+    def __del__(self) -> None:
+        if self.camera is not None:
+            self.camera.disconnect()
 
 
     #returns a dictionary containing the image bytes and metadata
