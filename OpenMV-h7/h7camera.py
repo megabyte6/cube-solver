@@ -30,7 +30,11 @@ class H7camera:
         
         self.camera.connect()
         self.camera.stop()
+        time.sleep(0.5)
+        self.camera.disconnect()
 
+        self.camera.connect()
+        self.camera.stop()
         self.camera.exec(internal_script)
 
         return
