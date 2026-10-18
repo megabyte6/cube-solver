@@ -53,3 +53,26 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# CMake build output
+build/
+cmake-build-*/
+CMakeUserPresets.json
+compile_commands.json
+
+# clangd index/cache
+.cache/
+
+# direnv
+.direnv/
+.envrc
+
+# VS Code: share project config, ignore personal state
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Zed: settings.json holds machine-specific clangd paths
+.zed/settings.json
